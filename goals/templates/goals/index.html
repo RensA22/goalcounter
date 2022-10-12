@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Overzicht wedstrijden</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    </head>
+    <body>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                  {% for colname in table_names %}
+                    <th scope="col">{{colname}}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+            <tbody>
+                {% for wedstrijd in wedstrijden %}
+                    <tr>
+                        <td>{{ wedstrijd.0 }}</td>
+                        <td>{{ wedstrijd.1 }}</td>
+                        <td>{% if wedstrijd.7 == "True" or wedstrijd.7 == 1 %} 
+                            RKSV Meterik - {{ wedstrijd.2 }}
+                            {% else %}
+                            {{ wedstrijd.2 }} - RKSV Meterik
+                            {% endif %}
+                        </td>
+                        <td>{{ wedstrijd.3 }}</td>
+                        <td>{{ wedstrijd.4 }}</td>
+                        <td>{{ wedstrijd.5 }}</td>
+                        <td>{{ wedstrijd.6 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
